@@ -1,0 +1,11 @@
+@keyframes kroma-spin { to { transform: rotate(360deg); } }
+@keyframes kroma-float { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -14px, 0); } }
+@keyframes kroma-drift { 0% { transform: translate3d(0, 0, 0) scale(1); } 33% { transform: translate3d(4%, -6%, 0) scale(1.12); } 66% { transform: translate3d(-5%, 4%, 0) scale(0.94); } 100% { transform: translate3d(0, 0, 0) scale(1); } }
+@keyframes kroma-marquee { to { transform: translate3d(-50%, 0, 0); } }
+@keyframes kroma-sheen { 0% { transform: translateX(-120%) skewX(-18deg); } 100% { transform: translateX(320%) skewX(-18deg); } }
+@keyframes kroma-bar { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
+@keyframes kroma-dash { to { stroke-dashoffset: -240; } }
+@keyframes kroma-gradient-pan { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+.anim-spin-slow { animation: kroma-spin 26s linear infinite; }.anim-float { animation: kroma-float 7s ease-in-out infinite; }.anim-drift { animation: kroma-drift 22s ease-in-out infinite; }.anim-marquee { animation: kroma-marquee var(--marquee-duration, 30s) linear infinite; }.anim-dash { stroke-dasharray: 6 10; animation: kroma-dash 9s linear infinite; }
+.anim-sheen { overflow: hidden; }.anim-sheen::after { content: ""; position: absolute; inset: -20%; background: linear-gradient(100deg, transparent 34%, rgba(255,255,255,0.5) 50%, transparent 66%); transform: translateX(-140%) skewX(-16deg); }.group:hover .anim-sheen::after { animation: kroma-sheen 1.15s var(--ease-out-expo) 1 both; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }.anim-spin-slow, .anim-float, .anim-drift, .anim-marquee, .anim-dash { animation: none !important; } }
