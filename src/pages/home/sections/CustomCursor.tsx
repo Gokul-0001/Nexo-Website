@@ -92,7 +92,7 @@ export default function CustomCursor() {
         className="absolute top-0 left-0 flex items-center justify-center rounded-full border opacity-0"
         style={{ width: 30, height: 30, borderColor: "rgba(14,15,20,0.35)", willChange: "transform, width, height, background-color" }}
       >
-        <span ref={label} className="font-mono text-[9px] tracking-[0.2em] text-paper uppercase opacity-0" />
+        <span ref={label} className="text-mono-9-sm tracking-[0.2em] text-paper uppercase opacity-0" />
       </div>
       <div
         ref={dot}

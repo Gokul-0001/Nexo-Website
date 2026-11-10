@@ -61,7 +61,7 @@ export default function FluidBreak() {
       ))}
 
       <div className="absolute inset-0 flex items-center justify-center px-6">
-        <span data-blob-word className="display text-center text-[clamp(1.4rem,4.6vw,3.4rem)] leading-[0.9] text-paper mix-blend-difference">
+        <span data-blob-word className="display text-center text-[clamp(1.1rem,3.3vw,2.3rem)] leading-[0.9] text-paper mix-blend-difference">
           THE BEST PART IS THE NEXT ONE
         </span>
       </div>

@@ -29,7 +29,7 @@ export default function About() {
         <SplitLines
           lines={["WE DON'T JUST BUILD WEBSITES.", "WE BUILD DIGITAL EXPERIENCES."]}
           stagger={0.12}
-          className="display text-[clamp(1.8rem,6.2vw,5.4rem)]"
+          className="display text-[clamp(1.4rem,4.3vw,3.6rem)]"
           render={(line, i) =>
             i === 1 ? (
               <span>
@@ -55,9 +55,9 @@ export default function About() {
         />
 
         <div className="mt-14 grid gap-12 border-t border-ink/12 pt-10 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
-          <Reveal className="space-y-6 text-[15px] leading-[1.68] text-ink/65 sm:text-[16.5px]">
+          <Reveal className="space-y-6 text-[14px] leading-[1.68] text-ink/65 sm:text-[15.5px]">
             <p>
-              KROMA started in 2016 as two designers and a rented desk. Today we are eleven
+              NEXO started in 2016 as two designers and a rented desk. Today we are eleven
               designers, engineers and motion designers spread across three time zones — still
               deliberately small, still taking on a maximum of six engagements a year.
             </p>
@@ -71,7 +71,7 @@ export default function About() {
               {["Strategy", "Design", "Engineering", "Motion", "AI"].map((s, i) => (
                 <span
                   key={s}
-                  className="rounded-full border px-3.5 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase transition-colors duration-500 hover:border-ink/40"
+                  className="rounded-full border px-3.5 py-1.5 text-mono-9 tracking-[0.16em] uppercase transition-colors duration-500 hover:border-ink/40"
                   style={{
                     borderColor:
                       [BRAND.cobalt, BRAND.mint, BRAND.ember, BRAND.lime, BRAND.ink][i] + "55",
@@ -92,10 +92,10 @@ export default function About() {
               { n: 31, s: "", l: "Awards & mentions" },
             ].map((st) => (
               <div key={st.l}>
-                <div className="display text-[clamp(2.4rem,5.4vw,3.8rem)] leading-none">
+                <div className="text-display-stat">
                   <Counter to={st.n} suffix={st.s} />
                 </div>
-                <div className="mt-2 max-w-[16ch] font-mono text-[9.5px] leading-relaxed tracking-[0.18em] text-ink/45 uppercase">
+                <div className="mt-2 max-w-[16ch] text-mono-9 leading-relaxed text-ink/45 uppercase">
                   {st.l}
                 </div>
               </div>
@@ -117,9 +117,9 @@ export default function About() {
                   background: [BRAND.cobalt, BRAND.mint, BRAND.ember, BRAND.lime][i],
                 }}
               />
-              <span className="font-mono text-[10px] tracking-[0.2em] text-ink/35">0{i + 1}</span>
-              <h3 className="display mt-3 text-[clamp(1.15rem,2.6vw,1.6rem)]">{p.t}</h3>
-              <p className="mt-3 max-w-[44ch] text-[14.5px] leading-[1.6] text-ink/60">{p.b}</p>
+              <span className="text-mono-9 tracking-[0.2em] text-ink/35">0{i + 1}</span>
+              <h3 className="display mt-3 text-[clamp(0.95rem,1.95vw,1.27rem)]">{p.t}</h3>
+              <p className="mt-3 max-w-[44ch] text-body-caption text-ink/60">{p.b}</p>
             </Reveal>
           ))}
         </div>
@@ -136,19 +136,19 @@ export default function About() {
               ].map(([initials, c], i) => (
                 <span
                   key={i}
-                  className="grid h-11 w-11 place-items-center rounded-full border-2 border-paper font-mono text-[10px] text-paper transition-transform duration-500 hover:-translate-y-1"
+                  className="grid h-11 w-11 place-items-center rounded-full border-2 border-paper text-mono-9 text-paper transition-transform duration-500 hover:-translate-y-1"
                   style={{ background: c as string }}
-                  title="KROMA team"
+                  title="NEXO team"
                 >
                   {initials}
                 </span>
               ))}
             </div>
-            <p className="text-[13.5px] text-ink/55">
+            <p className="text-caption text-ink/55">
               Eleven specialists. <span className="text-ink">No account managers.</span>
             </p>
           </div>
-          <p className="font-mono text-[10px] tracking-[0.18em] text-ink/40 uppercase">
+          <p className="text-mono-9 text-ink/40 uppercase">
             Currently taking briefs for Q3 →
           </p>
         </Reveal>

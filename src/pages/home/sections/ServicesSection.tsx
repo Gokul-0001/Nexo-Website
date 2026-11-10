@@ -13,7 +13,13 @@ export default function Services() {
   const preview = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState<number | null>(null);
   const [openMobile, setOpenMobile] = useState<number | null>(null);
-  const touch = isTouchDevice();
+  // Touch detection is deferred to a post-mount effect so server and client
+  // produce identical HTML on the first render (avoids hydration mismatch).
+  const [touch, setTouch] = useState(false);
+
+  useEffect(() => {
+    setTouch(isTouchDevice());
+  }, []);
 
   /* cursor-following preview card (lerped, rAF, only while hovering) */
   useEffect(() => {
@@ -79,11 +85,11 @@ export default function Services() {
             <span className="eyebrow mb-5 block text-ink/40">(02) — Capabilities</span>
             <SplitLines
               lines={["WHAT WE", "CREATE"]}
-              className="display text-[clamp(2.6rem,9vw,7.6rem)]"
+              className="display text-[clamp(1.85rem,5.6vw,4.7rem)]"
               lineClassName="pb-[0.02em]"
             />
           </div>
-          <p className="max-w-[42ch] text-[15px] leading-[1.62] text-ink/60 lg:pb-4">
+          <p className="max-w-[42ch] text-[14px] leading-[1.62] text-ink/60 lg:pb-4">
             Six disciplines, one team. We move between strategy, design and engineering without
             hand-offs — so the idea that sold the work is the idea that ships.
           </p>
@@ -121,7 +127,7 @@ export default function Services() {
                   style={{ paddingBlock: expanded ? "34px" : "24px" }}
                 >
                   <span
-                    className="font-mono text-[11px] tracking-[0.14em] transition-colors duration-500"
+                    className="text-mono-10-5 tracking-[0.14em] transition-colors duration-500"
                     style={{ color: expanded ? s.color : "rgba(14,15,20,0.35)" }}
                   >
                     {s.index}
@@ -129,7 +135,7 @@ export default function Services() {
 
                   <span className="min-w-0 flex-1">
                     <span
-                      className="display block text-[clamp(1.6rem,6.4vw,4.15rem)] leading-[0.92] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      className="display block text-[clamp(1.2rem,4.2vw,2.7rem)] leading-[0.92] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       style={{
                         transform: `translateX(${expanded ? "14px" : "0"})`,
                         opacity: dimmed ? 0.32 : 1,
@@ -139,7 +145,7 @@ export default function Services() {
                       {s.title}
                     </span>
                     <span
-                      className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 overflow-hidden text-[13px] text-ink/55 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 overflow-hidden text-[12.5px] text-ink/55 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       style={{
                         maxHeight: expanded ? 140 : 0,
                         opacity: expanded ? 1 : 0,
@@ -191,7 +197,7 @@ export default function Services() {
         {/* trailing note */}
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
           <p className="eyebrow text-ink/40">Retainers · Sprint builds · Full engagements</p>
-          <p className="text-[13px] text-ink/50">
+          <p className="text-[12.5px] text-ink/50">
             Not sure where to start?{" "}
             <a href="#contact" data-cursor="link" className="relative text-ink underline decoration-ink/25 underline-offset-4 transition-all hover:decoration-ink">
               Book a 30-minute teardown →

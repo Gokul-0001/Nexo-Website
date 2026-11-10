@@ -14,7 +14,7 @@ function LaptopScreen() {
         </span>
         <span className="mx-auto flex items-center gap-1 rounded-full bg-paper-2 px-2 py-0.5 font-mono text-[6px] text-ink/55">
           <i className="h-1 w-1 rounded-full" style={{ background: BRAND.mint }} />
-          kroma.studio / work
+          nexo.studio / work
         </span>
       </div>
       <div className="relative flex-1 overflow-hidden px-3 pt-2.5">

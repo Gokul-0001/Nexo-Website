@@ -379,7 +379,7 @@ export function RotatingBadge({ size = 118 }: { size?: number }) {
         <path id={id} d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" />
       </defs>
       <text fontFamily="'JetBrains Mono', monospace" fontSize="9.4" letterSpacing="3.1" fill={BRAND.ink}>
-        <textPath href={`#${id}`}>KROMA · DIGITAL EXPERIENCE STUDIO · EST 2016 · </textPath>
+        <textPath href={`#${id}`}>NEXO · DIGITAL EXPERIENCE STUDIO · EST 2016 · </textPath>
       </text>
       <circle cx="60" cy="60" r="7" fill="none" stroke={BRAND.ember} strokeWidth="1.4" />
       <circle cx="60" cy="60" r="2.2" fill={BRAND.ember} />

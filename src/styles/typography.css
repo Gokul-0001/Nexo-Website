@@ -1,0 +1,277 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   NEXO — Global Typography System
+   ──────────────────────────────────────────────────────────────────────────
+   Source of truth: the existing Home page typography.
+
+   Every value here is extracted directly from the Home sections. The
+   aim is to make the existing typography reusable, not to invent a new
+   scale or to "improve" the visual rhythm.
+
+   Font families live in `src/styles/design-tokens.css` (the only place
+   that defines --font-display / --font-sans / --font-mono). This file
+   consumes those tokens and exposes:
+
+     1. Per-level CSS variables (--text-h1, --text-h2, …, --text-body…)
+        so any component can adopt the same scale.
+     2. Utility classes (.display, .text-h1, .text-h2, .text-body, …)
+        that apply the full recipe (family, size, weight, line-height,
+        tracking, text-transform).
+     3. Mono / metadata classes (.eyebrow, .text-mono-9, .text-mono-10,
+        .text-mono-11) for the existing uppercase label language used
+        by chips, badges, footers and CTAs.
+
+   Every size uses the same `clamp()` recipe the Home page already uses so
+   the responsive behaviour is preserved.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── 1. Per-level typography scale ─────────────────────────────────────── */
+
+@theme {
+  /* Heading ramp — same clamp values as Home. */
+  --text-h1: clamp(2rem, 7.2vw, 6.75rem);          /* Hero H1 */
+  --text-h2: clamp(1.85rem, 5.6vw, 4.7rem);        /* Services / Connect / ContactDetails */
+  --text-h3: clamp(1.6rem, 4.5vw, 3.45rem);        /* Work title */
+  --text-h4: clamp(1.2rem, 4.2vw, 2.7rem);         /* Services list / Process row */
+  --text-h2-sm: clamp(1.4rem, 4.3vw, 3.6rem);      /* About H2 */
+  --text-h2-md: clamp(1.85rem, 5.6vw, 4.7rem);     /* Section H2 / FinalCTA / ProjectEnquiry */
+
+  /* Display (small) sizes used for stat / inline emphasis. */
+  --text-display-stat: clamp(1.85rem, 3.7vw, 2.5rem); /* About counter */
+  --text-display-md-2: clamp(1.05rem, 2.1vw, 1.55rem); /* Pipeline / metadata value */
+  --text-display-lg-2: clamp(1.25rem, 2.7vw, 2.05rem); /* Direct lines */
+
+  /* Body ramp — Home uses a small fixed / responsive body size. */
+  --text-body-lg:   clamp(14px, 1.45vw, 15.5px);    /* Home About / CTA paragraph */
+  --text-body:      14px;                            /* Hero sub / Services paragraph */
+  --text-body-sm:   12.5px;                          /* Service blurb / trailing note */
+  --text-body-xs:   11.5px;                          /* CTA footnote */
+
+  /* Line-height tokens mirror what Home uses today. */
+  --leading-display:        0.85;   /* .display */
+  --leading-heading:        0.86;   /* h1/h2/h3 default */
+  --leading-display-tight:  0.92;   /* H2 / list titles in Home */
+  --leading-body:           1.62;   /* Home paragraph default */
+  --leading-body-loose:     1.66;   /* CTA / Contact */
+  --leading-body-relaxed:   1.68;   /* About block */
+
+  /* Tracking tokens mirror Home. */
+  --tracking-display:       -0.045em;
+  --tracking-body:           0;
+  --tracking-mono-tight:     0.12em;
+  --tracking-mono:           0.14em;
+  --tracking-mono-md:        0.16em;
+  --tracking-mono-lg:        0.18em;
+  --tracking-mono-xl:        0.2em;
+  --tracking-mono-eyebrow:   0.22em;
+}
+
+@layer base {
+  /* Headings inherit Home defaults — display family, 800 weight, tight
+     leading and display tracking. The per-level sizes are applied through
+     the utility classes below so headings without a class still look like
+     Home. */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-heading);
+    text-wrap: balance;
+  }
+
+  p, li, blockquote, dd {
+    text-wrap: pretty;
+  }
+}
+
+/* ── 2. Display + heading utilities ─────────────────────────────────────── */
+
+/* .display — Home's primary display recipe. */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+}
+
+/* H1 — fluid, matches Home Hero. */
+@utility text-h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-heading);
+  font-size: var(--text-h1);
+}
+
+/* H2 — fluid, matches Services / Connect / ContactDetails / Work heading. */
+@utility text-h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display-tight);
+  font-size: var(--text-h2);
+}
+
+/* H3 — fluid, matches Work title / large sub-heading. */
+@utility text-h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-heading);
+  font-size: var(--text-h3);
+}
+
+/* H4 — fluid, matches Services list title / Process row title. */
+@utility text-h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display-tight);
+  font-size: var(--text-h4);
+}
+
+/* H2 (small) — fluid, matches Home About H2. */
+@utility text-h2-sm {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-heading);
+  font-size: var(--text-h2-sm);
+}
+
+/* H2 (medium) — fluid, matches Home Process H2. */
+@utility text-h2-md {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-heading);
+  font-size: var(--text-h2-md);
+}
+
+/* Small display — stat counters / inline emphasis like the About
+   section's 214 / 31 / 96 / 31 numbers and the Process progress readout. */
+@utility text-display-stat {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+  font-size: var(--text-display-stat);
+}
+
+/* Tiny display — for chip values like the Hero stat row / metadata. */
+@utility text-display-xs {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+  font-size: clamp(0.875rem, 1.7vw, 1.1rem);
+}
+
+/* ── 3. Body utilities ─────────────────────────────────────────────────── */
+
+@utility text-body-lg {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-loose);
+  color: inherit;
+}
+
+@utility text-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: inherit;
+}
+
+@utility text-body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sm);
+  line-height: 1.55;
+  color: inherit;
+}
+
+@utility text-body-xs {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-xs);
+  line-height: 1.5;
+  color: inherit;
+}
+
+/* ── 4. Mono / metadata utilities ──────────────────────────────────────── */
+
+/* .eyebrow — uppercase status / category labels used across every section. */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--tracking-mono-eyebrow);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Mono 11 — 11px, default tracking 0.16em. Mobile menu items. */
+@utility text-mono-11 {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;          /* 11px */
+  letter-spacing: var(--tracking-mono-md);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Mono 10 — 10px, default tracking 0.14em. Footer time, Work year. */
+@utility text-mono-10 {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;           /* 10px */
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Mono 10.5 — 10.5px, default tracking 0.16em. Service index, Footer CTA. */
+@utility text-mono-10-5 {
+  font-family: var(--font-mono);
+  font-size: 0.6563rem;          /* 10.5px */
+  letter-spacing: var(--tracking-mono-md);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Mono 9.5 — 9.5px, default tracking 0.18em. Pill labels, IDs, badges. */
+@utility text-mono-9 {
+  font-family: var(--font-mono);
+  font-size: 0.5938rem;          /* 9.5px */
+  letter-spacing: var(--tracking-mono-lg);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Mono 9 — 9px, default tracking 0.18em. Work metric / client chips. */
+@utility text-mono-9-sm {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;          /* 9px */
+  letter-spacing: var(--tracking-mono-lg);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ── 5. Caption / supporting labels ─────────────────────────────────────── */
+
+/* Caption — Footer paragraph / supporting copy (13px / 1.65). */
+@utility text-caption {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;          /* 13px */
+  line-height: 1.65;
+  color: inherit;
+}
+
+/* Body caption — small paragraph used in cards / contact details (13.5px / 1.6). */
+@utility text-body-caption {
+  font-family: var(--font-sans);
+  font-size: 0.8438rem;          /* 13.5px */
+  line-height: 1.6;
+  color: inherit;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   End of global typography system.
+   All Home typography is preserved verbatim. Other pages should consume
+   the utilities above instead of introducing bespoke font sizes.
+   ────────────────────────────────────────────────────────────────────────── */

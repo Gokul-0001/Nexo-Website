@@ -21,7 +21,7 @@ export default function Recognition() {
               {CLIENTS.map((c, i) => (
                 <span
                   key={c}
-                  className="display text-[clamp(0.95rem,1.9vw,1.25rem)] tracking-[-0.02em] text-ink/35 transition-colors duration-500 hover:text-ink"
+                  className="display text-[clamp(0.875rem,1.7vw,1.1rem)] tracking-[-0.02em] text-ink/35 transition-colors duration-500 hover:text-ink"
                   style={{ transform: `translateY(${i % 2 ? 10 : 0}px)` }}
                 >
                   {c}
@@ -36,8 +36,8 @@ export default function Recognition() {
               {AWARDS.map((a) => (
                 <li key={a.t} className="group flex items-center gap-4 border-b border-ink/10 py-3">
                   <span className="h-2 w-2 shrink-0 rounded-full transition-transform duration-500 group-hover:scale-150" style={{ background: a.c }} />
-                  <span className="display text-[15px] transition-transform duration-500 group-hover:translate-x-1">{a.t}</span>
-                  <span className="ml-auto font-mono text-[10px] text-ink/40">{a.y}</span>
+                  <span className="display text-[13.5px] transition-transform duration-500 group-hover:translate-x-1">{a.t}</span>
+                  <span className="ml-auto text-mono-9 text-ink/40">{a.y}</span>
                 </li>
               ))}
             </ul>

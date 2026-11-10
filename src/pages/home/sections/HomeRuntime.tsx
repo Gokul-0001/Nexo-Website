@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import CustomCursor from "./CustomCursor";
-import WebGLBackground from "./WebGLBackground";
 import { BRAND } from "@/lib/brand";
 import { isTouchDevice, usePrefersReducedMotion } from "@/lib/motion";
 
@@ -26,5 +25,5 @@ export default function HomeRuntime() {
   }, [reduce]);
   useEffect(() => { document.fonts?.ready.then(() => ScrollTrigger.refresh()); }, []);
   useEffect(() => { const trigger = ScrollTrigger.create({ trigger: document.body, start: "top top", end: "bottom bottom", scrub: true, onUpdate: (self) => { if (progress.current) progress.current.style.transform = `scaleX(${self.progress})`; } }); return () => trigger.kill(); }, []);
-  return <><CustomCursor /><WebGLBackground /><span className="pointer-events-none fixed inset-x-0 top-0 z-[980] h-[2px]"><span ref={progress} className="block h-full origin-left" style={{ transform: "scaleX(0)", background: `linear-gradient(90deg, ${BRAND.cobalt}, ${BRAND.mint} 32%, ${BRAND.lime} 58%, ${BRAND.ember})` }} /></span></>;
+  return <><CustomCursor /><span className="pointer-events-none fixed inset-x-0 top-0 z-[980] h-[2px]"><span ref={progress} className="block h-full origin-left" style={{ transform: "scaleX(0)", background: `linear-gradient(90deg, ${BRAND.cobalt}, ${BRAND.mint} 32%, ${BRAND.lime} 58%, ${BRAND.ember})` }} /></span></>;
 }

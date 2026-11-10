@@ -57,12 +57,12 @@ function ProjectRow({ project, i }: { project: (typeof PROJECTS)[number]; i: num
       className={`group relative ${offset ? "lg:pl-[14%]" : "lg:pr-[14%]"}`}
     >
       <div className={`flex flex-wrap items-end gap-x-6 gap-y-2 pb-5 ${offset ? "lg:flex-row-reverse lg:text-right" : ""}`}>
-        <span data-title-word className="display block text-[clamp(2.2rem,7vw,5.4rem)] leading-[0.86] transition-colors duration-500 group-hover:text-[color:var(--tone)]"
+        <span data-title-word className="text-h3 block transition-colors duration-500 group-hover:text-[color:var(--tone)]"
           style={{ ["--tone" as string]: a }}>
           {project.title}
         </span>
-        <span className="mb-2 flex flex-col gap-1 text-[13px] text-ink/55">
-          <span className="font-mono text-[10px] tracking-[0.2em] text-ink/40">
+        <span className="mb-2 flex flex-col gap-1 text-body-sm text-ink/55">
+          <span className="text-mono-10 tracking-[0.2em] text-ink/40">
             {String(i + 1).padStart(2, "0")} / {project.year}
           </span>
           <span>{project.discipline}</span>
@@ -99,7 +99,7 @@ function ProjectRow({ project, i }: { project: (typeof PROJECTS)[number]; i: num
             {project.metrics.map((m) => (
               <span
                 key={m}
-                className="translate-y-3 rounded-full bg-paper/90 px-3 py-1.5 font-mono text-[9px] tracking-[0.14em] text-ink/75 uppercase opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+                className="translate-y-3 rounded-full bg-paper/90 px-3 py-1.5 text-mono-9-sm tracking-[0.14em] text-ink/75 uppercase opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
                 style={{ transitionDelay: "80ms" }}
               >
                 {m}
@@ -107,7 +107,7 @@ function ProjectRow({ project, i }: { project: (typeof PROJECTS)[number]; i: num
             ))}
           </div>
           <span
-            className="flex translate-y-3 items-center gap-2 rounded-full px-4 py-2 font-mono text-[9px] tracking-[0.2em] text-paper uppercase opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+            className="flex translate-y-3 items-center gap-2 rounded-full px-4 py-2 text-mono-9-sm tracking-[0.2em] text-paper uppercase opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
             style={{ background: "rgba(14,15,20,0.82)", backdropFilter: "blur(8px)", transitionDelay: "140ms" }}
           >
             {project.client}
@@ -126,16 +126,16 @@ export default function Work() {
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6 border-t border-ink/12 pt-6 sm:mb-20">
           <div>
             <span className="eyebrow mb-5 block text-ink/40">(03) — Selected work</span>
-            <SplitLines lines={["SELECTED WORK"]} className="display text-[clamp(2.4rem,8vw,6.6rem)]" />
+            <SplitLines lines={["SELECTED WORK"]} className="display text-[clamp(1.75rem,5.2vw,4.2rem)]" />
           </div>
           <div className="flex items-center gap-6">
-            <p className="max-w-[26ch] text-[13px] leading-[1.6] text-ink/55">
+            <p className="max-w-[26ch] text-body-sm leading-[1.6] text-ink/55">
               Four of twenty-one case studies from the last two years.
             </p>
             <a
               href="#contact"
               data-cursor="link"
-              className="group flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 font-mono text-[10px] tracking-[0.18em] uppercase transition-colors duration-500 hover:border-ink hover:bg-ink hover:text-paper"
+              className="group flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 text-mono-9 uppercase transition-colors duration-500 hover:border-ink hover:bg-ink hover:text-paper"
             >
               All projects
               <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>

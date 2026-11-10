@@ -66,7 +66,7 @@ export default function Process() {
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div className="lg:sticky lg:top-[16vh] lg:h-fit">
             <span className="eyebrow mb-5 block text-ink/40">Our process</span>
-            <SplitLines lines={["HOW WE", "BUILD"]} className="display text-[clamp(2.4rem,8vw,6rem)]" />
+            <SplitLines lines={["HOW WE", "BUILD"]} className="display text-[clamp(1.7rem,5vw,3.8rem)]" />
 
             <div className="relative mt-10 hidden h-[220px] lg:block">
               <div
@@ -80,7 +80,7 @@ export default function Process() {
                 }}
               />
               <div className="absolute top-[76px] left-[104px] h-[92px] w-[92px] rounded-full border border-ink/12 bg-paper/70 backdrop-blur-sm" />
-              <span className="display absolute top-[104px] left-[124px] text-[34px] text-ink">
+              <span className="display absolute top-[104px] left-[124px] text-[27px] text-ink">
                 {current.step}
               </span>
             </div>
@@ -88,7 +88,7 @@ export default function Process() {
             <div className="mt-8">
               <div className="flex items-end justify-between">
                 <span className="eyebrow text-ink/45">Progress</span>
-                <span className="display text-[22px]">
+                <span className="display text-[18.5px]">
                   <span ref={pct}>00</span>
                   <span className="text-ink/35">/100</span>
                 </span>
@@ -146,20 +146,20 @@ export default function Process() {
                     >
                       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 px-5 pt-6 sm:px-7">
                         <span
-                          className="font-mono text-[11px] tracking-[0.16em]"
+                          className="text-mono-10-5"
                           style={{ color: isActive ? p.color : "rgba(46,58,70,0.35)" }}
                         >
                           {p.step}
                         </span>
                         <h3
-                          className="display text-[clamp(1.5rem,4.4vw,2.6rem)] transition-colors duration-500"
+                          className="display text-[clamp(1.2rem,3.2vw,1.9rem)] transition-colors duration-500"
                           style={{ color: isActive ? p.color : "#2E3A46" }}
                         >
                           {p.title}
                         </h3>
                         <span className="eyebrow ml-auto text-ink/40">{p.duration}</span>
                       </div>
-                      <p className="max-w-[54ch] px-5 pt-3 pb-6 text-[14px] leading-[1.6] text-ink/60 sm:px-7">
+                      <p className="max-w-[54ch] px-5 pt-3 pb-6 text-caption leading-[1.6] text-ink/60 sm:px-7">
                         {p.body}
                       </p>
                       <div
@@ -169,7 +169,7 @@ export default function Process() {
                         {p.deliverables.map((d) => (
                           <span
                             key={d}
-                            className="bg-paper px-5 py-3 font-mono text-[9.5px] tracking-[0.14em] text-ink/55 uppercase"
+                            className="bg-paper px-5 py-3 text-mono-9 tracking-[0.14em] text-ink/55 uppercase"
                           >
                             {d}
                           </span>

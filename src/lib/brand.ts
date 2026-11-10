@@ -1,5 +1,5 @@
 /**
- * KROMA brand system (original bold creative studio palette).
+ * NEXO brand system (original bold creative studio palette).
  */
 export const BRAND = {
   cobalt: "#2B44FF",
@@ -13,14 +13,45 @@ export const BRAND = {
 
 export type BrandKey = keyof typeof BRAND;
 
-/* ── Navigation (original, single-level) ─────────────────────────────────── */
+/* ── Site navigation (used by Header + Footer) ───────────────────────────── */
 
-export const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+export type NavLink = { label: string; href: string; hasChildren?: boolean };
+export type ServicePage = { slug: string; label: string; href: string };
+export type FooterLink = { label: string; href: string };
+
+/** Top-level header navigation. */
+export const NAV_LINKS: NavLink[] = [
+  { label: "Services", href: "/services", hasChildren: true },
+  { label: "Work", href: "/work" },
+  { label: "About Us", href: "/about" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
+];
+
+/** Services dropdown items (one entry per individual service route). */
+export const SERVICE_PAGES: ServicePage[] = [
+  { slug: "website-development", label: "Website Development", href: "/services/website-development" },
+  { slug: "ecommerce", label: "Ecommerce", href: "/services/ecommerce" },
+  { slug: "app-development", label: "App Development", href: "/services/app-development" },
+  { slug: "digital-marketing", label: "Digital Marketing", href: "/services/digital-marketing" },
+  { slug: "automation", label: "Automation", href: "/services/automation" },
+];
+
+/** Footer link set (used in Footer columns). */
+export const FOOTER_LINKS: FooterLink[] = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Website Development", href: "/services/website-development" },
+  { label: "Ecommerce", href: "/services/ecommerce" },
+  { label: "App Development", href: "/services/app-development" },
+  { label: "Digital Marketing", href: "/services/digital-marketing" },
+  { label: "Automation", href: "/services/automation" },
+  { label: "Work", href: "/work" },
+  { label: "About Us", href: "/about" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export type Service = {

@@ -75,7 +75,7 @@ export default function Hero() {
                   <span className="eyebrow text-ink/40">Est. 2016 · Lisbon / Berlin / Remote</span>
                 </div>
 
-                <h1 className="display text-[clamp(2.85rem,11.3vw,10.6rem)] [text-shadow:0_0_48px_rgba(255,255,255,0.92),0_0_10px_rgba(255,255,255,0.8)]">
+                <h1 className="display text-[clamp(2rem,7.2vw,6.75rem)] [text-shadow:0_0_48px_rgba(255,255,255,0.92),0_0_10px_rgba(255,255,255,0.8)]">
                   <SplitLines
                     as="span"
                     from="load"
@@ -102,8 +102,8 @@ export default function Hero() {
                   />
                 </h1>
 
-                <div className="mt-6 flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
-                  <p data-hero-fade className="pointer-events-auto max-w-[38ch] text-[15px] leading-[1.62] text-ink/65 sm:max-w-[44ch] sm:text-[16.5px]">
+                <div className="mt-28 flex flex-wrap items-end justify-between gap-x-8 gap-y-6">
+                  <p data-hero-fade className="pointer-events-auto max-w-[38ch] text-[14px] leading-[1.62] text-ink/65 sm:max-w-[44ch] sm:text-[15.5px]">
                     Design, engineering and motion from one roof — building websites, products and
                     interactive worlds for brands that refuse to be forgettable.
                   </p>
@@ -113,7 +113,7 @@ export default function Hero() {
                       ref={ctaRef}
                       href="#contact"
                       data-cursor="magnet"
-                      className="group relative overflow-hidden rounded-full px-7 py-4 font-mono text-[11px] tracking-[0.18em] text-paper uppercase"
+                      className="group relative overflow-hidden rounded-full px-7 py-4 text-mono-10-5 tracking-[0.18em] text-paper uppercase"
                       style={{ background: BRAND.ink }}
                     >
                       <span
@@ -133,7 +133,7 @@ export default function Hero() {
                       href="#work"
                       data-cursor="view"
                       data-cursor-label="VIEW"
-                      className="group flex items-center gap-3 rounded-full border border-ink/15 bg-paper/70 px-6 py-4 font-mono text-[11px] tracking-[0.18em] text-ink/70 uppercase backdrop-blur-sm transition-colors duration-500 hover:border-ink/40 hover:text-ink"
+                      className="group flex items-center gap-3 rounded-full border border-ink/15 bg-paper/70 px-6 py-4 text-mono-10-5 tracking-[0.18em] text-ink/70 uppercase backdrop-blur-sm transition-colors duration-500 hover:border-ink/40 hover:text-ink"
                     >
                       Selected work
                       <span className="relative block h-1.5 w-1.5 rounded-full" style={{ background: BRAND.ember }} />
@@ -171,7 +171,7 @@ export default function Hero() {
                   ["96", "Avg. client score"],
                 ].map(([n, l]) => (
                   <div key={l}>
-                    <div className="display text-[24px] leading-none">{n}</div>
+                    <div className="display text-[20.5px] leading-none">{n}</div>
                     <div className="eyebrow mt-1 text-ink/40">{l}</div>
                   </div>
                 ))}

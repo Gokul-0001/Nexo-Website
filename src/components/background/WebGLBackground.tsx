@@ -125,6 +125,14 @@ function webglAvailable() {
   }
 }
 
+/**
+ * Shared website background — lifted from the original Home page so the same
+ * ambient WebGL + fallback composition now sits behind every route.
+ *
+ * Mounted once per page via `PageContainer`. Sits at `fixed inset-0 z-0` with
+ * `pointer-events-none`, so it never intercepts clicks/forms/navigation and
+ * every page element stacks cleanly above it.
+ */
 export default function WebGLBackground() {
   const reduce = usePrefersReducedMotion();
   // Defer feature detection until after hydration so the server and client
@@ -143,7 +151,7 @@ export default function WebGLBackground() {
     document.addEventListener("visibilitychange", onVis);
     return () => {
       window.removeEventListener("resize", onResize);
-      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("visibilitychange", onVis);
     };
   }, []);
 
