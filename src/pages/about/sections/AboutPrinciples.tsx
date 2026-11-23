@@ -19,10 +19,36 @@ export default function AboutPrinciples() {
 
   useLayoutEffect(() => {
     const element = root.current;
-    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!element) return;
+
+    const rows = gsap.utils.toArray<HTMLElement>("[data-principle-row]", element);
+    const letters = gsap.utils.toArray<HTMLElement>("[data-watermark-letter]", element);
+
+    // Pin each watermark letter to its principle row, then shift the whole
+    // stack so it sits vertically centred within the section.
+    const alignLetters = () => {
+      if (!rows.length || !letters.length) return;
+      const wrapper = rows[0].offsetParent as HTMLElement | null;
+      const grid = wrapper?.offsetParent as HTMLElement | null;
+      if (!wrapper || !grid) return;
+      const wrapperTop = grid.offsetTop + wrapper.offsetTop;
+      const stackHeight =
+        rows[rows.length - 1].offsetTop - rows[0].offsetTop + letters[0].offsetHeight;
+      const shift =
+        element.clientHeight / 2 - stackHeight / 2 - (wrapperTop + rows[0].offsetTop);
+      rows.forEach((row, index) => {
+        const letter = letters[index];
+        if (letter) letter.style.top = `${row.offsetTop + shift}px`;
+      });
+    };
+    alignLetters();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.addEventListener("resize", alignLetters, { passive: true });
+      return () => window.removeEventListener("resize", alignLetters);
+    }
 
     const ctx = gsap.context(() => {
-      const rows = gsap.utils.toArray<HTMLElement>("[data-principle-row]", element);
       rows.forEach((row, index) => {
         gsap.fromTo(row, { opacity: 0, x: index % 2 ? 72 : -72 }, {
           opacity: 1, x: 0, ease: "none",
@@ -34,17 +60,30 @@ export default function AboutPrinciples() {
         opacity: 1, y: 0, ease: "none",
         scrollTrigger: { trigger: element, start: "top 76%", end: "top 44%", scrub: 0.7 },
       });
+
+      // Each letter scrubs in lock-step with its own principle row's reveal.
+      letters.forEach((letter, index) => {
+        const row = rows[index];
+        if (!row) return;
+        gsap.fromTo(letter, { opacity: 0, y: 64 }, {
+          opacity: 1, y: 0, ease: "none",
+          scrollTrigger: { trigger: row, start: "top 86%", end: "top 52%", scrub: 0.65 },
+        });
+      });
     }, element);
 
-    return () => ctx.revert();
+    // Keep the letters aligned whenever layout reflows (resize, font load, etc.).
+    const onRefresh = () => alignLetters();
+    ScrollTrigger.addEventListener("refresh", onRefresh);
+
+    return () => {
+      ScrollTrigger.removeEventListener("refresh", onRefresh);
+      ctx.revert();
+    };
   }, []);
 
   return (
     <section ref={root} className="relative z-10 overflow-hidden py-[16vh] sm:py-[20vh]">
-      <div aria-hidden className="pointer-events-none absolute right-[-0.08em] top-[8vh] display text-[clamp(14rem,29vw,30rem)] leading-none text-ink/[0.035]">
-        N
-      </div>
-
       <div className="relative mx-auto grid w-full max-w-[1440px] gap-14 px-5 sm:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <span className="eyebrow text-ink/40">How we show up</span>
@@ -59,7 +98,14 @@ export default function AboutPrinciples() {
           </span>
         </div>
 
-        <div className="border-y border-ink/12">
+        <div className="relative border-y border-ink/12">
+          <div aria-hidden className="pointer-events-none absolute right-[-0.08em] top-0 bottom-0 z-[-1] display text-[clamp(4.5rem,9.5vw,10rem)] leading-[0.8] text-ink/[0.035]">
+            {["N", "E", "X", "O"].map((letter, index) => (
+              <span key={letter} data-watermark-letter className="absolute right-0" style={{ top: `${index * 25}%` }}>
+                {letter}
+              </span>
+            ))}
+          </div>
           {PRINCIPLES.map(([number, title, body, color]) => (
             <article key={number} data-principle-row className="group grid gap-5 border-b border-ink/12 py-8 first:border-t-0 sm:grid-cols-[72px_minmax(12rem,0.7fr)_1fr] sm:items-start sm:gap-8 sm:py-11 last:border-b-0">
               <span className="display text-[clamp(2.8rem,5vw,4.7rem)] leading-[0.72] text-ink/12" style={{ WebkitTextStroke: `1px ${color}` }}>

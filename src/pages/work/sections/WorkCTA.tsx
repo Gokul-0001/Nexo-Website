@@ -1,65 +1,119 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BRAND } from "@/lib/brand";
 import { useMagnetic } from "@/lib/motion";
-import { Reveal } from "@/components/animations/TextReveal";
 
+gsap.registerPlugin(ScrollTrigger);
+
+/** What a visitor might want to build — each opens the contact page. PLACEHOLDER links. */
+const PROJECT_TYPES = [
+  { label: "A website", color: BRAND.cobalt, href: "/contact" },
+  { label: "An online store", color: BRAND.ember, href: "/contact" },
+  { label: "An app", color: BRAND.mint, href: "/contact" },
+  { label: "A marketing campaign", color: BRAND.lime, href: "/contact" },
+  { label: "An automation", color: BRAND.cobalt, href: "/contact" },
+];
+
+const PROMISES = ["Free 30-minute call", "Written scope & fixed price", "Weekly demos", "Support after launch"];
+
+/**
+ * Work — final close. Same recipe as the Home / About / Contact CTAs (dark panel, ambient blobs,
+ * gradient headline, lime pill + email link, bottom strip) with Work-specific content.
+ */
 export default function WorkCTA() {
+  const root = useRef<HTMLElement | null>(null);
   const btn = useMagnetic<HTMLAnchorElement>(0.32);
   const secondary = useMagnetic<HTMLAnchorElement>(0.22);
 
+  useLayoutEffect(() => {
+    const element = root.current;
+    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = gsap.context(() => {
+      const scrub = { trigger: element, scrub: 0.65 };
+      gsap.fromTo("[data-cta-panel]", { scale: 0.93, borderRadius: 72 }, { scale: 1, borderRadius: 42, ease: "none", scrollTrigger: { ...scrub, start: "top 95%", end: "top 35%" } });
+      gsap.fromTo("[data-cta-line]", { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, ease: "none", stagger: 0.12, scrollTrigger: { ...scrub, start: "top 75%", end: "top 25%" } });
+      gsap.fromTo("[data-cta-fade]", { opacity: 0, y: 30 }, { opacity: 1, y: 0, ease: "none", stagger: 0.1, scrollTrigger: { ...scrub, start: "top 55%", end: "top 5%" } });
+      gsap.fromTo("[data-cta-chip]", { opacity: 0, y: 24, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, ease: "none", stagger: 0.06, scrollTrigger: { ...scrub, start: "top 50%", end: "top 0%" } });
+    }, element);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative z-10 px-3 pt-[2vh] pb-[10vh] sm:px-6 sm:pb-[14vh]">
+    <section ref={root} className="relative z-10 px-3 pt-[2vh] pb-[10vh] sm:px-6 sm:pb-[14vh]">
       <div
+        data-cta-panel
         data-cursor="none"
         className="relative mx-auto w-full max-w-[1440px] overflow-hidden rounded-[30px] px-5 py-[10vh] sm:rounded-[42px] sm:px-10 sm:py-[12vh]"
         style={{ background: BRAND.ink }}
       >
         <div
-          className="anim-drift absolute -top-[40%] left-[-12%] h-[80%] w-[60%] rounded-full blur-[80px]"
+          className="anim-drift absolute -top-[38%] -left-[14%] h-[80%] w-[64%] rounded-full blur-[80px]"
           style={{ background: `radial-gradient(circle, ${BRAND.cobalt}, transparent 66%)`, opacity: 0.85 }}
         />
         <div
-          className="anim-drift absolute -right-[18%] -bottom-[40%] h-[70%] w-[60%] rounded-full blur-[90px]"
-          style={{ background: `radial-gradient(circle, ${BRAND.mint}, transparent 64%)`, opacity: 0.7, animationDelay: "-9s" }}
+          className="anim-drift absolute -right-[16%] -bottom-[34%] h-[76%] w-[58%] rounded-full blur-[85px]"
+          style={{ background: `radial-gradient(circle, ${BRAND.mint}, transparent 64%)`, opacity: 0.6, animationDelay: "-8s" }}
         />
         <div className="grain absolute inset-0 opacity-[0.22] mix-blend-overlay" />
 
-        <div className="relative mx-auto flex w-full max-w-[1280px] items-center justify-between text-mono-9 text-paper/55 uppercase">
+        <div data-cta-fade className="relative mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-between gap-3 text-mono-9 text-paper/55 uppercase">
           <span className="flex items-center gap-2">
             <i className="h-1.5 w-1.5 rounded-full" style={{ background: BRAND.lime }} />
-            02 — Archive access
+            Your project next
           </span>
-          <span>Full archive on request</span>
+          <span className="max-sm:hidden">Web · Commerce · Apps · Marketing · Automation</span>
         </div>
 
-        <Reveal className="relative mx-auto mt-10 max-w-[1080px] text-center">
+        <div className="relative mx-auto mt-10 max-w-[1080px] text-center">
           <h2 className="display text-h2-md leading-[0.92]">
-            <span className="block text-paper">WANT THE FULL</span>
-            <span className="block" style={{ color: BRAND.lime }}>
-              ARCHIVE?
+            <span className="block overflow-hidden"><span data-cta-line className="block text-paper">YOUR BUSINESS</span></span>
+            <span className="block overflow-hidden">
+              <span
+                data-cta-line
+                className="block bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: `linear-gradient(96deg, ${BRAND.cobalt}, ${BRAND.mint} 28%, ${BRAND.paper} 50%, ${BRAND.ember} 72%, ${BRAND.cobalt})`,
+                  backgroundSize: "300% 100%",
+                  animation: "kroma-gradient-pan 12s linear infinite",
+                }}
+              >
+                COULD BE OUR
+              </span>
             </span>
-            <span
-              className="block bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(96deg, ${BRAND.cobalt}, ${BRAND.mint} 28%, ${BRAND.paper} 50%, ${BRAND.ember} 72%, ${BRAND.cobalt})`,
-                backgroundSize: "300% 100%",
-                animation: "kroma-gradient-pan 12s linear infinite",
-              }}
-            >
-              ASK & WE&apos;LL SEND IT.
-            </span>
+            <span className="block overflow-hidden"><span data-cta-line className="block" style={{ color: BRAND.lime }}>NEXT CASE STUDY.</span></span>
           </h2>
-        </Reveal>
+        </div>
 
-        <Reveal className="relative mx-auto mt-8 max-w-[52ch] text-center">
-          <p className="text-[14px] leading-[1.66] text-paper/70 sm:text-[15.5px]">
-            We keep the full archive under NDA by default. Drop us a line and we will send the
-            relevant cases — case studies, perf benchmarks and the post-launch story.
-          </p>
-        </Reveal>
+        <p data-cta-fade className="relative mx-auto mt-8 max-w-[54ch] text-center text-[14px] leading-[1.66] text-paper/70 sm:text-[15.5px]">
+          Liked what you saw? Tell us what you want to build, sell or fix. A founder reads every brief and
+          replies within one working day with ideas, a timeline and a clear price.
+        </p>
 
-        <div className="relative mx-auto mt-10 flex max-w-[640px] flex-wrap items-center justify-center gap-4">
+        {/* What are you building? */}
+        <div className="relative mx-auto mt-9 max-w-[820px] text-center">
+          <span data-cta-fade className="block text-mono-9 tracking-[0.18em] text-paper/45 uppercase">I&apos;m looking for</span>
+          <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+            {PROJECT_TYPES.map((type) => (
+              <a
+                key={type.label}
+                href={type.href}
+                data-cta-chip
+                className="group/chip flex items-center gap-2 rounded-full border border-paper/15 bg-paper/[0.04] px-4 py-2.5 text-[13px] text-paper/80 transition-[background-color,border-color,color] duration-500 hover:border-transparent hover:text-ink"
+                style={{ ["--chip" as string]: type.color }}
+                onMouseEnter={(event) => { event.currentTarget.style.background = type.color; event.currentTarget.style.color = type.color === BRAND.cobalt || type.color === BRAND.ember ? BRAND.paper : BRAND.ink; }}
+                onMouseLeave={(event) => { event.currentTarget.style.background = ""; event.currentTarget.style.color = ""; }}
+              >
+                <i className="h-2 w-2 rounded-full transition-colors duration-500 group-hover/chip:bg-current" style={{ background: type.color }} />
+                {type.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div data-cta-fade className="relative mx-auto mt-10 flex max-w-[640px] flex-wrap items-center justify-center gap-4">
           <a
             ref={btn}
             href="/contact"
@@ -72,7 +126,7 @@ export default function WorkCTA() {
               style={{ background: `linear-gradient(100deg, ${BRAND.paper}, ${BRAND.lime})` }}
             />
             <span className="relative flex items-center gap-3">
-              Request the archive
+              Start your project
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" className="transition-transform duration-500 group-hover/btn:translate-x-1.5">
                 <path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" strokeWidth="1.4" />
               </svg>
@@ -87,6 +141,18 @@ export default function WorkCTA() {
           >
             studio@nexo.design
           </a>
+        </div>
+
+        <div data-cta-fade className="relative mx-auto mt-14 max-w-[920px] border-t border-paper/12 pt-5">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-caption text-paper/60">
+            <span className="text-mono-9 tracking-[0.18em] text-paper/45 uppercase">Every project gets</span>
+            {PROMISES.map((item) => (
+              <span key={item} className="flex items-center gap-2">
+                <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke={BRAND.lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M3 8.5 6.5 12 13 4.5" /></svg>
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

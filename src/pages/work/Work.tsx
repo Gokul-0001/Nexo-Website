@@ -3,12 +3,21 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageContainer from "@/components/layout/PageContainer";
 import WorkHero from "./sections/WorkHero";
-import WorkIndex from "./sections/WorkIndex";
+import WorkClients from "./sections/WorkClients";
+import WorkWebsite from "./sections/WorkWebsite";
+import WorkStatement from "./sections/WorkStatement";
+import WorkEcommerce from "./sections/WorkEcommerce";
+import WorkWave from "./sections/WorkWave";
+import WorkApp from "./sections/WorkApp";
+import WorkImpact from "./sections/WorkImpact";
+import WorkMarketing from "./sections/WorkMarketing";
+import WorkWhyNexo from "./sections/WorkWhyNexo";
+import WorkAutomation from "./sections/WorkAutomation";
 import WorkCTA from "./sections/WorkCTA";
 
 /**
- * Work index page — every project is a story; the page is the table
- * of contents. Same editorial language as Home Work section.
+ * Work page — one showcase per service, with connecting sections in between.
+ * Built so far: header, client logos, Website Development work, ribbons interlude, Ecommerce work, wave interlude, App Development work, impact numbers, Digital Marketing work, The Nexo Way dial, Automation work, final CTA.
  */
 export default function WorkPage() {
   return (
@@ -16,7 +25,16 @@ export default function WorkPage() {
       <Header />
       <main className="relative">
         <WorkHero />
-        <WorkIndex />
+        <WorkClients />
+        <WorkWebsite />
+        <WorkStatement />
+        <WorkEcommerce />
+        <WorkWave />
+        <WorkApp />
+        <WorkImpact />
+        <WorkMarketing />
+        <WorkWhyNexo />
+        <WorkAutomation />
         <WorkCTA />
       </main>
       <Footer />

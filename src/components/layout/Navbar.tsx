@@ -2,18 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { BRAND, NAV_LINKS, SERVICE_PAGES } from "@/lib/brand";
 import { useMagnetic } from "@/lib/motion";
+import nexoLogo from "@/images/nexo_logo.png";
+
 
 function Logo({ compact }: { compact: boolean }) {
   return (
     <a href="/" data-cursor="link" aria-label="NEXO home" className="group inline-flex items-center">
-      {/* Image-based logo. Replace /images/logo.png with the final asset when ready. */}
       <img
-        src="/images/logo.png"
+        src={nexoLogo.src}
         alt="Nexo Technologies & Services"
-        width={120}
-        height={28}
+        width={nexoLogo.width}
+        height={nexoLogo.height}
         className={`block h-auto w-auto object-contain transition-opacity duration-500 ${
-          compact ? "max-h-[22px]" : "max-h-[28px]"
+          compact ? "max-h-[45px]" : "max-h-[45px]"
         }`}
         style={{ width: compact ? "auto" : "auto", maxWidth: "140px" }}
       />
@@ -192,10 +193,10 @@ export default function Nav() {
           />
           <div className="flex items-center justify-between px-6 pt-6">
             <img
-              src="/images/logo.png"
+              src={nexoLogo.src}
               alt="Nexo Technologies & Services"
-              width={120}
-              height={28}
+              width={nexoLogo.width}
+              height={nexoLogo.height}
               className="block h-auto max-h-[28px] w-auto max-w-[140px] object-contain"
             />
             <button

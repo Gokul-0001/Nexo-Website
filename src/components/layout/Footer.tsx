@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NAV_LINKS, SERVICE_PAGES } from "@/lib/brand";
 import { Marquee } from "@/components/animations/Marquee";
+import nexoLogo from "@/images/nexo_logo.png";
 
 function LocalTime({ city }: { city: string }) {
   const [t, setT] = useState("");
@@ -38,12 +39,11 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
             <a href="/" data-cursor="link" className="group inline-flex items-end gap-2">
-              {/* Image-based logo. Replace /images/logo.png with the final asset when ready. */}
               <img
-                src="/images/logo.png"
+                src={nexoLogo.src}
                 alt="Nexo Technologies & Services"
-                width={220}
-                height={56}
+                width={nexoLogo.width}
+                height={nexoLogo.height}
                 className="block h-auto max-h-[clamp(2.5rem,6vw,3.5rem)] w-auto max-w-[220px] object-contain transition-opacity duration-500"
               />
             </a>

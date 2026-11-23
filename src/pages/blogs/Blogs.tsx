@@ -3,12 +3,13 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageContainer from "@/components/layout/PageContainer";
 import BlogsHero from "./sections/BlogsHero";
-import BlogsIndex from "./sections/BlogsIndex";
+import BlogsFeatured from "./sections/BlogsFeatured";
+import BlogsTopics from "./sections/BlogsTopics";
+import BlogsPosts from "./sections/BlogsPosts";
 import BlogsCTA from "./sections/BlogsCTA";
 
 /**
- * Blogs index page — founders' writing on craft, clients and
- * the build process.
+ * Blogs page — being rebuilt section by section. Built so far: header (The Nexo Journal), featured story, browse by topic, all articles, final CTA.
  */
 export default function BlogsPage() {
   return (
@@ -16,7 +17,9 @@ export default function BlogsPage() {
       <Header />
       <main className="relative">
         <BlogsHero />
-        <BlogsIndex />
+        <BlogsFeatured />
+        <BlogsTopics />
+        <BlogsPosts />
         <BlogsCTA />
       </main>
       <Footer />

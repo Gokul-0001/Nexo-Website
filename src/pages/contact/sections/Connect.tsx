@@ -25,18 +25,11 @@ const SOCIALS = [
     c: BRAND.cobalt,
   },
   {
-    label: "Dribbble",
-    handle: "/nexo",
-    note: "Detail crops, motion tests, micro UI.",
-    href: "https://dribbble.com/nexo",
+    label: "WhatsApp",
+    handle: "+91 00000 00000", // PLACEHOLDER: real WhatsApp number
+    note: "Quick questions, straight to the team.",
+    href: "https://wa.me/PLACEHOLDER-whatsapp-number", // PLACEHOLDER
     c: BRAND.mint,
-  },
-  {
-    label: "Behance",
-    handle: "/nexo",
-    note: "Long-form case studies after launch.",
-    href: "https://behance.net/nexo",
-    c: BRAND.lime,
   },
   {
     label: "Email",
@@ -48,7 +41,7 @@ const SOCIALS = [
 ];
 
 /**
- * Connect — five feeds, one studio.
+ * Connect — four ways in, one studio.
  *
  * Reuses the editorial list pattern from Home/Connect but each row now
  *   - has a brand-coloured field that inflates on hover (different colour
@@ -111,7 +104,7 @@ export default function Connect() {
             />
           </div>
           <p className="max-w-[42ch] text-[14px] leading-[1.62] text-ink/60 lg:pb-4">
-            Five feeds, one studio. The work, the people and the build process — none of it
+            Four ways in, one studio. The work, the people and the build process — none of it
             locked behind a gate.
           </p>
         </div>

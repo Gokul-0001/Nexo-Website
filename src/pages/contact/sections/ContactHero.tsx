@@ -90,12 +90,20 @@ export default function ContactHero() {
       <div className="relative mx-auto grid w-full max-w-[1440px] grid-cols-1 items-start gap-10 px-5 sm:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-14">
         {/* ───────────── LEFT — editorial opening ───────────── */}
         <div ref={heroCopy} className="flex flex-col justify-center lg:min-h-[620px]">
+          <div data-hero-fade className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="eyebrow flex items-center gap-2 text-ink/55">
+              <i className="h-1.5 w-1.5 rounded-full" style={{ background: BRAND.lime }} />
+              Contact Nexo
+            </span>
+            <span className="hidden h-3 w-px bg-ink/15 sm:block" />
+            <span className="eyebrow text-ink/40">Call · Email · WhatsApp · Social</span>
+          </div>
           <h1 className="text-h1 [text-shadow:0_0_48px_rgba(255,255,255,0.92),0_0_10px_rgba(255,255,255,0.8)]">
             <SplitLines
               as="span"
               from="load"
               stagger={0.13}
-              lines={["LET'S TALK.", "CONTACT US."]}
+              lines={["LET'S TALK.", "ANYWHERE."]}
               className="block"
               lineClassName="pb-[0.02em]"
               render={(line, i) =>
@@ -118,8 +126,9 @@ export default function ContactHero() {
           </h1>
 
           <p data-hero-fade className="mt-9 max-w-[52ch] text-[14px] leading-[1.65] text-ink/65 sm:text-[15.5px]">
-            Have a project, idea or opportunity in mind? Tell us what you are building and we will
-            get back to you within one working day with a useful next step.
+            Send the brief by email, ring the studio, drop us a WhatsApp or find us on LinkedIn and
+            Instagram. However you reach out, a founder reads it and replies within one working day
+            with a clear next step, wherever in the world you are building.
           </p>
 
           <div data-hero-fade className="mt-9 flex flex-wrap items-center gap-3">
